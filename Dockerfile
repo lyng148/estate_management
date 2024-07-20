@@ -12,7 +12,7 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # Run stage
-FROM tomcat:8.5.34-jre8
+FROM tomcat:8.5.34
 
 # Copy the WAR file to the webapps directory of Tomcat
 COPY --from=build /app/target/*.war /usr/local/tomcat/webapps/app.war
