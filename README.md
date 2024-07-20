@@ -37,3 +37,14 @@ spring.datasource.password = mật khẩu
 Setup như hình dưới
 ![img_1.png](img_1.png)
 5. Nhấn RUN để khởi chạy WEB, cửa sổ trình duyệt sẽ tự động mở ra, hoặc truy cập vào http://localhost:8081
+
+## Chức năng trong tương lai
+
+Vì build trong một tuần nên nhiều chức năng chính còn thiếu sót, các tính năng cần cập nhật trong tương lai bao gồm:
+### 1. User
+- Đăng kí thuê tòa nhà
+- Chat với quản lý tòa nhà
+### 2.Thêm Role Staff
+- Quản lý, xem thông tin tòa nhà được giao quản lý
+### 3. Manager
+- Quản lý tòa nhà đang được thuê
