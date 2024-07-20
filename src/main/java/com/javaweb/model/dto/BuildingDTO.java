@@ -13,7 +13,7 @@ public class BuildingDTO extends AbstractDTO{
     private Long numberOfBasement;
     private Long floorArea;
     private String level;
-    private List<String> typeCode;
+    private List<String> type;
     private String overtimeFee;
     private String electricityFee;
     private String deposit;
@@ -147,12 +147,12 @@ public class BuildingDTO extends AbstractDTO{
         this.numberOfBasement = numberOfBasement;
     }
 
-    public List<String> getTypeCode() {
-        return typeCode;
+    public List<String> getType() {
+        return type;
     }
 
-    public void setTypeCode(List<String> typeCode) {
-        this.typeCode = typeCode;
+    public void setType(List<String> type) {
+        this.type = type;
     }
 
     public String getStreet() {

@@ -264,9 +264,9 @@
 
                                 <div class="form-group">
                                     <div class="col-xs-12">
-                                        <label for="typeCode" class="col-xs-3">Loại tòa nhà</label>
+                                        <label for="type" class="col-xs-3">Loại tòa nhà</label>
                                         <div class="col-xs-7">
-                                            <form:checkboxes path="typeCode" items="${rentType}"
+                                            <form:checkboxes path="type" items="${rentType}"
                                                              cssStyle="margin-left: 10px"></form:checkboxes>
                                         </div>
                                     </div>
@@ -316,16 +316,16 @@
         <script>
             $("#btnAddBuilding").click(function () {
                 var json = {};
-                var typeCode = [];
+                var type = [];
                 var formData = $("#form-edit").serializeArray();
                 console.log("ok");
                 $.each(formData, function (i, it) {
-                    if (it.name != "typeCode")
+                    if (it.name != "type")
                         json["" + it.name + ""] = it.value;
                     else
-                        typeCode.push(it.value);
+                        type.push(it.value);
                 });
-                json['typeCode'] = typeCode;
+                json['type'] = type;
                 console.log("ok");
                 addBuilding(json);
             })

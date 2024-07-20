@@ -33,12 +33,8 @@ public class BuildingSearchResponse extends AbstractDTO {
 	public void setManagerName(String managerName) {
 		this.managerName = managerName;
 	}
-	public String getManagerPhoneNumber() {
-		return managerPhone;
-	}
-	public void setManagerPhoneNumber(String managerPhoneNumber) {
-		this.managerPhone = managerPhoneNumber;
-	}
+
+
 	public Long getFloorArea() {
 		return floorArea;
 	}

@@ -4,8 +4,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public enum rentType {
-    NGUYEN_CAN("Nguyên căn"),
     TANG_TRET("Tầng trệt"),
+    NGUYEN_CAN("Nguyên căn"),
     NOI_THAT("Nội thất");
     private final String name;
     rentType(String name) {

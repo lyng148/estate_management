@@ -201,7 +201,7 @@
                                                                     <label for="manager-phone-number">SĐT quản
                                                                         lý</label>
                                                                     <form:input class="form-control"
-                                                                                path="managerPhoneNumber"></form:input>
+                                                                                path="managerPhone"></form:input>
                                                                 </div>
                                                             </div>
 
@@ -221,7 +221,7 @@
                                                     <div class="form-group">
                                                         <div class="col-xs-12">
                                                             <div class="col-xs-5">
-                                                                <form:checkboxes path="typeCode" items="${rentType}"
+                                                                <form:checkboxes path="type" items="${rentType}"
                                                                                  cssStyle="margin-left: 10px"></form:checkboxes>
                                                             </div>
                                                         </div>
@@ -316,7 +316,7 @@
                                             <td>${building.address}</td>
                                             <td>${building.numberOfBasement}</td>
                                             <td>${building.managerName}</td>
-                                            <td>${building.managerPhoneNumber}</td>
+                                            <td>${building.managerPhone}</td>
                                             <td>${building.floorArea}</td>
                                             <td>${building.rentArea}</td>
                                             <td>${building.rentPrice}</td>
