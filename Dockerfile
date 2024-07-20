@@ -1,26 +1,14 @@
+# Sử dụng Tomcat 8.5.34 làm base image
+FROM tomcat:8.5.34-jdk8-openjdk
 
-# Build stage
-FROM adoptopenjdk/maven-openjdk8:nightly AS build
+# Xóa ứng dụng mẫu của Tomcat
+RUN rm -rf /usr/local/tomcat/webapps/ROOT
 
-WORKDIR /app
+# Sao chép file WAR của bạn vào thư mục webapps của Tomcat
+COPY target/*.war /usr/local/tomcat/webapps/ROOT.war
 
-# Copy pom.xml and download dependencies
-COPY pom.xml .
-RUN mvn dependency:go-offline
-
-# Copy source code and build the application
-COPY src ./src
-RUN mvn package -DskipTests
-
-# Run stage
-FROM tomcat:8.5.34
-
-# Copy the WAR file to the webapps directory of Tomcat
-COPY --from=build /app/target/*.war /usr/local/tomcat/webapps/app.war
-
-# Expose the port that Tomcat will run on
+# Mở cổng 8080
 EXPOSE 8080
 
-# Start Tomcat
+# Chạy Tomcat
 CMD ["catalina.sh", "run"]
-
