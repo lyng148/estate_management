@@ -16,7 +16,7 @@ Website DEMO:  https://linhng148.id.vn/
 - [OpenJDK 1.8](https://www.oracle.com/java/technologies/javase/javase8-archive-downloads.html)
 - [Tomcat 8.5](https://tomcat.apache.org/download-80.cgi)
 ###  Cài đặt và chạy ứng dụng
-Hướng dẫn này sử dụng Intelij IDEAD 2024.1 để khởi chạy
+Hướng dẫn này sử dụng Intellij IDEAD 2024.1 để khởi chạy
 1. Sao chép repository:
    ```sh
    git clone https://github.com/lyng148/sun_apply.git
@@ -33,6 +33,7 @@ spring.datasource.password = mật khẩu
 - Language level: 8 - Lambdas. type annotations etc.
 4. Trong Run/Debug Configuration, chọn Edit Configurations... 
 ![img.png](img.png)
+
 Setup như hình dưới
 ![img_1.png](img_1.png)
 5. Nhấn RUN để khởi chạy WEB, cửa sổ trình duyệt sẽ tự động mở ra, hoặc truy cập vào http://localhost:8081
