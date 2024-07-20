@@ -1,6 +1,6 @@
 # Build stage
 # Build stage
-FROM adoptopenjdk/maven-openjdk8:nightly AS build
+FROM domblack/oracle-jdk8:latest AS build
 
 WORKDIR /app
 
