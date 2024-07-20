@@ -10,6 +10,7 @@ RUN mvn dependency:go-offline
 # Copy source code and build the application
 COPY src ./src
 RUN mvn clean package -DskipTests
+RUN mvn clean install
 
 # Run stage
 FROM tomcat:8.5-jre8
