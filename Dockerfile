@@ -5,11 +5,11 @@ WORKDIR /app
 
 # Copy pom.xml and download dependencies
 COPY pom.xml .
-RUN mvn clean install
+RUN mvn dependency:go-offline
 
 # Copy source code and build the application
 COPY src ./src
-RUN mvn package -DskipTests
+RUN mvn clean install
 
 # Run stage
 FROM tomcat:8.5.34-jre8
