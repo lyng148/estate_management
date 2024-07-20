@@ -1,5 +1,5 @@
 # Build stage
-FROM maven:3.8.1-jdk-8-slim AS build
+FROM maven:3.8.1-jdk-8 AS build
 
 WORKDIR /app
 
