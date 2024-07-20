@@ -16,7 +16,7 @@ RUN mvn clean install
 FROM tomcat:8.5-jre8
 
 # Copy the WAR file to the webapps directory of Tomcat
-COPY --from=build /app/target/*.war /usr/local/tomcat/webapps/app.war
+COPY --from=build /app/target/*.war /usr/local/tomcat/webapps/ROOT.war
 
 # Expose the port that Tomcat will run on
 EXPOSE 8080
