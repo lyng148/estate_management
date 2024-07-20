@@ -115,12 +115,13 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<scope>annotationProcessor</scope>
+			<version>1.18.34</version>
+			<scope>provided</scope>
 		</dependency>
-
 	</dependencies>
 
 	<build>
