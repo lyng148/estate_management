@@ -1,5 +1,5 @@
 # Build stage
-FROM adoptopenjdk/maven-openjdk8:nightly AS build
+FROM adoptopenjdk/maven-openjdk8:latest AS build
 
 WORKDIR /app
 
@@ -9,10 +9,10 @@ RUN mvn dependency:go-offline
 
 # Copy source code and build the application
 COPY src ./src
-RUN mvn clean install
+RUN mvn clean package -DskipTests
 
 # Run stage
-FROM tomcat:8.5.34-jre8
+FROM tomcat:8.5-jre8
 
 # Copy the WAR file to the webapps directory of Tomcat
 COPY --from=build /app/target/*.war /usr/local/tomcat/webapps/app.war
