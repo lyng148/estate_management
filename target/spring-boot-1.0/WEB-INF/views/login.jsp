@@ -27,6 +27,7 @@
 							Session Timeout
 					</div>
 				</c:if>
+
 				<div class="container-fluid" >
 					<section class="gradient-custom">
 						<div class="page-wrapper">

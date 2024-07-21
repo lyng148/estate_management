@@ -30,7 +30,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
     }
 
     public String determineTargetUrl(Authentication authentication) {
-        String url = "";
+        String url = SystemConstant.HOME;
         List<String> roles = SecurityUtils.getAuthorities();
 //        if (isUser(roles)) {
 //            url = SystemConstant.HOME;

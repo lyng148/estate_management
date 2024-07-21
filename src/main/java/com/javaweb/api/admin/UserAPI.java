@@ -48,8 +48,9 @@ public class UserAPI {
     }
 
     @PostMapping("/register")
-    public void registerUser(@RequestBody UserDTO userDTO) {
+    public String registerUser(@RequestBody UserDTO userDTO) {
         userService.register(userDTO);
+        return "Registered successfully";
     }
     @DeleteMapping
     public ResponseEntity<Void> deleteUsers(@RequestBody long[] idList) {

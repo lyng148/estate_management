@@ -11,6 +11,7 @@ public class UserDTO extends AbstractDTO {
     private String firstName;
     private String lastName;
     private String password;
+    private String repeatPassword;
     private Integer status;
     private List<RoleDTO> roles = new ArrayList<>();
     private String roleName;
@@ -19,6 +20,14 @@ public class UserDTO extends AbstractDTO {
 
     public String getFirstName() {
         return firstName;
+    }
+
+    public String getRepeatPassword() {
+        return repeatPassword;
+    }
+
+    public void setRepeatPassword(String repeatPassword) {
+        this.repeatPassword = repeatPassword;
     }
 
     public void setFirstName(String firstName) {
