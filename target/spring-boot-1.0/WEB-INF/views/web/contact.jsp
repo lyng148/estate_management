@@ -97,7 +97,7 @@
                         <ul class="margin-bottom-15 link" style="list-style-type: none;">
                             <li>
                                 <span class="block_fonticon"><i class="fa fa-map-marker icon-lienhe"></i></span>
-                                <span class="title-li"> 46 Man Thiện, TP. Thủ Đức, TP. HCM</span>
+                                <span class="title-li">132 Lê Thanh Nghị, Hai Bà Trưng, TP Hà Nội</span>
                             </li>
                             <li>
                                 <span class="block_fonticon"><i class="fa fa-mobile icon-lienhe"></i></span>
@@ -109,7 +109,7 @@
                             <li>
                                 <span class="block_fonticon"><i class="fa fa-envelope icon-lienhe"></i></span>
                                 <span class="title-li">Email: <a style="color: #434a6e;"
-                                                                 href="">vsh@gmail.com</a></span>
+                                                                 href="">Linh.nbv225733@sis.hust.edu.vn</a></span>
                             </li>
                         </ul>
                     </div>
