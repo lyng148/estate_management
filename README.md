@@ -1,6 +1,11 @@
 # SkyLand
 SkyLand là một Website quản lý, cho thuê nhà đất. Được xây dựng và phát triển bằng Java, sử dụng Spring Boot làm framework chính.
 
+VIDEO DEMO:
+
+[![Video DEMO](https://i9.ytimg.com/vi_webp/7SoDYjKPFxk/mq1.webp?sqp=COC-9bQG-oaymwEmCMACELQB8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGCQgZShKMA8=&rs=AOn4CLDS9U3qGYfCUUDRdYsU3D_sPfSE8Q)](https://youtu.be/7SoDYjKPFxk)
+
+
 Website DEMO:  https://linhng148.id.vn/
 
 Admin Account DEMO:
