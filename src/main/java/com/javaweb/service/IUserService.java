@@ -26,4 +26,5 @@ public interface IUserService {
     List<UserDTO> getAllUsers(Pageable pageable);
     int countTotalItems();
     Map<Long, String> getStaffs();
+    void register(UserDTO userDTO);
 }

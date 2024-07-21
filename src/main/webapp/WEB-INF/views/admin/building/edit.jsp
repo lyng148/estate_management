@@ -290,7 +290,9 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <c:if test="${building.id != null}">
+                                    <input type="hidden" name="id" value="${building.id}">
+                                </c:if>
                                 <div class="form-group">
                                     <div class="col-xs-12">
                                         <div class="col-xs-3"></div>

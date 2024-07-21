@@ -91,6 +91,15 @@ public class UserService implements IUserService {
         return res;
     }
 
+    @Override
+    public void register(UserDTO userDTO) {
+        userDTO.setFullName(userDTO.getFirstName() + " " + userDTO.getLastName());
+        userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        userDTO.setStatus(1);
+        UserEntity userEntity = userConverter.convertToEntity(userDTO);
+        userRepository.save(userEntity);
+    }
+
 
     @Override
     public int getTotalItems(String searchValue) {
