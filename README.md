@@ -2,6 +2,7 @@
 SkyLand là một Website quản lý, cho thuê nhà đất. Được xây dựng và phát triển bằng Java, sử dụng Spring Boot làm framework chính.
 
 Website DEMO:  https://linhng148.id.vn/
+
 Admin Account DEMO:
 - Username: nguyenvana
 - Password: 123456
@@ -19,7 +20,7 @@ Admin Account DEMO:
 - [OpenJDK 1.8](https://www.oracle.com/java/technologies/javase/javase8-archive-downloads.html)
 - [Tomcat 8.5](https://tomcat.apache.org/download-80.cgi)
 ###  Cài đặt và chạy ứng dụng
-Hướng dẫn này sử dụng Intellij IDEAD 2024.1 để khởi chạy
+Hướng dẫn này sử dụng Intellij IDEA Ultimate 2024.1 để khởi chạy
 1. Sao chép repository:
    ```sh
    git clone https://github.com/lyng148/sun_apply.git
