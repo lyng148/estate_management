@@ -427,7 +427,7 @@
             function sendAssignBuilding(data) {
                 $.ajax({
                     type: "POST",
-                    url: "http://localhost:8081/api/buildings/staff",
+                    url: "/api/buildings/staff",
                     data: JSON.stringify(data),		// Chuyen doi du lieu gui den sang json
                     // dataType:"text",				// Kieu du lieu server tra ve client
                     contentType: "application/json",  // Kieu du lieu gui di
@@ -455,7 +455,7 @@
             function deleteBuilding(data) {
                 $.ajax({
                     type: "DELETE",
-                    url: "http://localhost:8081/api/buildings",
+                    url: "/api/buildings",
                     data: JSON.stringify(data),		// Chuyen doi du lieu gui den sang json
                     // dataType:"text",				// Kieu du lieu server tra ve client
                     contentType: "application/json",  // Kieu du lieu gui di
