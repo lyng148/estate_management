@@ -7,6 +7,7 @@ import com.javaweb.model.dto.BuildingDTO;
 import com.javaweb.model.request.BuildingSearchRequest;
 import com.javaweb.model.response.BuildingSearchResponse;
 import com.javaweb.repository.BuildingRepository;
+import com.javaweb.repository.RentAreaRepository;
 import com.javaweb.repository.entity.BuildingEntity;
 import com.javaweb.service.BuildingService;
 import org.modelmapper.ModelMapper;
@@ -29,6 +30,9 @@ public class BuildingServiceImpl implements BuildingService {
     private BuildingConverter buildingConverter;
 
     @Autowired
+    private RentAreaRepository rentAreaRepository;
+
+    @Autowired
     private ModelMapper modelMapper;
 
     @Override
@@ -47,11 +51,13 @@ public class BuildingServiceImpl implements BuildingService {
             type = buildingDTO.getType().stream().collect(Collectors.joining(","));
         }
         buildingEntity.setType(type == null ? "" : type);
+        // Vẫn chưa update rent area, hang muc để sau
         buildingRepository.save(buildingEntity);
     }
 
     @Override
     public void deleteBuildings(ArrayList<Long> ids) {
-
+        rentAreaRepository.deleteAllByBuildingIdIn(ids);
+        buildingRepository.deleteByIdIn(ids);
     }
 }

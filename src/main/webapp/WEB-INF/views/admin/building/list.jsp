@@ -448,7 +448,7 @@
                 var buildings = $("#building-list").find("tbody input[type=checkbox]:checked").map(function () {
                     return $(this).val();
                 }).get();
-                data['ids'] = buildings;
+                data = buildings;
                 deleteBuilding(data);
             })
 
@@ -462,6 +462,7 @@
                     success: function () {
                         console.log("success");
                         alert("Xóa tòa nhà thành công");
+                        window.location.reload();
                     },
                     error: function () {
                         console.log("fail");
@@ -471,8 +472,8 @@
             }
 
             function deleteOneBuilding(id) {
-                var data = {};
-                data['ids'] = id;
+                var data = [];
+                data.push(id);
                 deleteBuilding(data);
             }
 

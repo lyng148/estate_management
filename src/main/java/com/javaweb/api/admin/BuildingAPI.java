@@ -3,12 +3,13 @@ package com.javaweb.api.admin;
 import com.javaweb.model.dto.BuildingDTO;
 import com.javaweb.service.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.transaction.Transactional;
+import java.util.ArrayList;
 
 @RestController
+@Transactional
 @RequestMapping("/api/buildings")
 public class BuildingAPI {
     @Autowired
@@ -21,4 +22,9 @@ public class BuildingAPI {
         return new String("Building created");
     }
 
+    @DeleteMapping
+    public void deleteBuilding(@RequestBody ArrayList<Long> ids)
+    {
+        buildingService.deleteBuildings(ids);
+    }
 }
