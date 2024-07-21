@@ -74,10 +74,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="google-map margin-bottom-30">
                         <div class="maps_iframe">
-                            <iframe style="width: 100%;"
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.577731862711!2d106.7695372142139!3d10.850261760047032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f8d0e993b05%3A0x8abf4c480f8b822b!2zOTcgTWFuIFRoacOqbiwgUGjDuiBIaeG7h3AgSMaw4budYywgbmjhuq10IHPDumMgVHJ1w6JuIFbEg25nLCBWaeG7h3QgTmFt!5e0!3m2!1sen!2s!4v1652520257601!5m2!1sen!2s"
-                                    width="600" height="450" style="border:0;" allowfullscreen=""
-                                    loading="lazy"></iframe>
+                            <div style="width: 100%"><iframe width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=132%20l%C3%AA%20thanh%20ngh%E1%BB%8B,%20Hai%20b%C3%A0%20tr%C6%B0ng+(Linh)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.gps.ie/">gps systems</a></iframe></div>
                         </div>
 
                     </div>
@@ -153,7 +150,7 @@
                                 </div>
                                 <div class="content-center-footer">
                                     <p class="mb-1 mt-3">Trụ sở chính</p>
-                                    <p class="desc-footer">Số 46 Man Thiện, TP Thủ Đức, TP HCM</p>
+                                    <p class="desc-footer">132 Lê Thanh Nghị, Hai Bà Trưng, TP Hà Nội</p>
                                 </div>
                             </div>
                             <div class="col-12 col-md-4 text-center">
@@ -171,7 +168,7 @@
                                 </div>
                                 <div class="content-center-footer">
                                     <p class="mb-1 mt-3">Email</p>
-                                    <p class="desc-footer"><a class="a-text" href="#">vsh@gmail.com</a>
+                                    <p class="desc-footer"><a class="a-text" href="#">Linh.nbv225733@sis.hust.edu.vn</a>
                                     </p>
                                 </div>
                             </div>
