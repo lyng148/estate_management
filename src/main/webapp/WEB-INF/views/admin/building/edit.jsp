@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
@@ -294,9 +295,16 @@
                                     <div class="col-xs-12">
                                         <div class="col-xs-3"></div>
                                         <div class="col-xs-7">
-                                            <button type="button" class="btn btn-primary" id="btnAddBuilding">Thêm
-                                                tòa nhà
-                                            </button>
+                                            <c:if test="${building.id == null}">
+                                                <button type="button" class="btn btn-primary" id="btnAddBuilding">Thêm
+                                                    tòa nhà
+                                                </button>
+                                            </c:if>
+                                            <c:if test="${building.id != null}">
+                                                <button type="button" class="btn btn-warning" id="btnAddBuilding">Sửa
+                                                    tòa nhà
+                                                </button>
+                                            </c:if>
                                             <button type="button" class="btn btn-danger">Hủy</button>
                                         </div>
                                     </div>

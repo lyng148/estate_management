@@ -9,6 +9,7 @@ import com.javaweb.model.response.BuildingSearchResponse;
 import com.javaweb.repository.BuildingRepository;
 import com.javaweb.repository.RentAreaRepository;
 import com.javaweb.repository.entity.BuildingEntity;
+import com.javaweb.repository.entity.RentAreaEntity;
 import com.javaweb.service.BuildingService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,5 +60,18 @@ public class BuildingServiceImpl implements BuildingService {
     public void deleteBuildings(ArrayList<Long> ids) {
         rentAreaRepository.deleteAllByBuildingIdIn(ids);
         buildingRepository.deleteByIdIn(ids);
+    }
+
+    @Override
+    public BuildingDTO findById(Long id) {
+        BuildingEntity bd = buildingRepository.findById(id).get();
+        BuildingDTO dto = modelMapper.map(bd, BuildingDTO.class);
+        String rentArea = "";
+        ArrayList<RentAreaEntity> rentAreas = rentAreaRepository.findAllByBuildingId(id);
+        if (rentAreas != null && !rentAreas.isEmpty()) {
+            rentArea = rentAreas.stream().map(it -> it.getValue().toString()).collect(Collectors.joining(","));
+        }
+        dto.setRentArea(rentArea == "" ? null : rentArea);
+        return dto;
     }
 }

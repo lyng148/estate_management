@@ -19,6 +19,7 @@ public class BuildingAPI {
     public String createBuilding(@RequestBody BuildingDTO dto)
     {
         buildingService.createAndUpdateBuilding(dto);
+        if (dto.getId() != null) return "Building updated successfully";
         return new String("Building created");
     }
 
@@ -27,4 +28,6 @@ public class BuildingAPI {
     {
         buildingService.deleteBuildings(ids);
     }
+
+
 }

@@ -9,5 +9,5 @@ import java.util.ArrayList;
 public interface RentAreaRepository extends JpaRepository<RentAreaEntity, Long> {
     ArrayList<RentAreaEntity> findByValueAndBuilding(Long i, BuildingEntity bd);
     void deleteAllByBuildingIdIn(ArrayList<Long> id);
-
+    ArrayList<RentAreaEntity> findAllByBuildingId(Long id);
 }

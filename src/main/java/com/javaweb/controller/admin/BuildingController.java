@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController(value="buildingControllerOfAdmin")
+@RestController(value = "buildingControllerOfAdmin")
 public class BuildingController {
     @Autowired
     private IUserService iUserService;
@@ -26,32 +26,36 @@ public class BuildingController {
     private BuildingService buildingService;
 
     @GetMapping(value = "/admin/building-list")
-    public ModelAndView buildingList(@ModelAttribute(name="modelSearch") BuildingSearchRequest buildingSearchRequest){
+    public ModelAndView buildingList(@ModelAttribute(name = "modelSearch") BuildingSearchRequest buildingSearchRequest) {
         ModelAndView modelAndView = new ModelAndView("admin/building/list");
         modelAndView.addObject("staffs", iUserService.getStaffs());
-        modelAndView.addObject("districtCode",district.districtCode());
+        modelAndView.addObject("districtCode", district.districtCode());
         modelAndView.addObject("rentType", rentType.rentTypeName());
-
         List<BuildingSearchResponse> responseList = buildingService.findAll(buildingSearchRequest);
-
         modelAndView.addObject("buildingList", responseList);
         return modelAndView;
     }
 
     @GetMapping(value = "/admin/building-edit")
-    public ModelAndView editBuilding(@ModelAttribute(name = "building")BuildingDTO buildingDTO){
+    public ModelAndView editBuilding(@ModelAttribute(name = "building") BuildingDTO buildingDTO) {
         ModelAndView modelAndView = new ModelAndView("admin/building/edit");
-        modelAndView.addObject("districtCode",district.districtCode());
+        modelAndView.addObject("districtCode", district.districtCode());
         modelAndView.addObject("rentType", rentType.rentTypeName());
         return modelAndView;
     }
 
     @GetMapping(value = "/admin/building-edit-{id}")
-    public ModelAndView editOneBuilding(@PathVariable int id){
+    public ModelAndView editOneBuilding(@PathVariable Long id) {
         // Co loi, vi trong view dang su dung BuildingDTO
         // findById => BuildingEntity
         // convert tu BuildingEntity => BuildingDTO
         ModelAndView modelAndView = new ModelAndView("admin/building/edit");
+        modelAndView.addObject("districtCode", district.districtCode());
+        modelAndView.addObject("rentType", rentType.rentTypeName());
+        BuildingDTO buildingDTO = buildingService.findById(id);
+        if (buildingDTO == null) {
+            modelAndView = new ModelAndView("redirect:/admin/building-list");
+        } else modelAndView.addObject("building", buildingDTO);
         return modelAndView;
     }
 }
