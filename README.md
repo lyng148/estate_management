@@ -15,6 +15,7 @@ Admin Account DEMO:
 - Tìm kiếm tòa nhà theo 16 tiêu chí
 - Thêm, sửa, xóa, xem thông tin tòa nhà
 - Giao tòa nhà cho nhân viên quản lý
+- Quản lý tài khoản
 ## Hướng dẫn chạy sản phẩm
 ### Yêu cầu hệ thống
 - [OpenJDK 1.8](https://www.oracle.com/java/technologies/javase/javase8-archive-downloads.html)
