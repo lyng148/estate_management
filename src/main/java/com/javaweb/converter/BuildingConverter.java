@@ -1,6 +1,7 @@
 package com.javaweb.converter;
 
 
+import com.javaweb.enums.district;
 import com.javaweb.model.response.BuildingSearchResponse;
 import com.javaweb.repository.entity.BuildingEntity;
 
@@ -25,7 +26,7 @@ public class BuildingConverter {
             dto.setAddress(i.getStreet() +
                     ", " +
                     i.getWard() + ", " +
-                    i.getDistrict());
+                    (!i.getDistrict().isEmpty() ?  district.valueOf(i.getDistrict()).getDistrictName() : ""));
             dto.setRentArea(i.getRentAreaEntities().stream()
                     .map(it -> it.getValue().toString())
                     .collect(Collectors.joining(",")));

@@ -440,7 +440,7 @@
                                     </div>
                                     <div class="content-center-footer">
                                         <p class="mb-1 mt-3">Trụ sở chính</p>
-                                        <p class="desc-footer">132 Lê Thanh Nghị, Hai Bà Trưng, TP Hà Nội</p>
+                                        <p class="desc-footer">Số 46 Man Thiện, TP Thủ Đức, TP HCM</p>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4 text-center">
@@ -458,7 +458,7 @@
                                     </div>
                                     <div class="content-center-footer">
                                         <p class="mb-1 mt-3">Email</p>
-                                        <p class="desc-footer"><a class="a-text" href="#">Linh.nbv225733@sis.hust.edu.vn</a>
+                                        <p class="desc-footer"><a class="a-text" href="#">vsh@gmail.com</a>
                                         </p>
                                     </div>
                                 </div>

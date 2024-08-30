@@ -1,6 +1,8 @@
 package com.javaweb.api.admin;
 
+import com.javaweb.model.dto.AssignmentBuildingDTO;
 import com.javaweb.model.dto.BuildingDTO;
+import com.javaweb.model.response.ResponseDTO;
 import com.javaweb.service.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,19 +17,28 @@ public class BuildingAPI {
     @Autowired
     private BuildingService buildingService;
 
+    @GetMapping(value = "/{id}/staffs")
+    public ResponseDTO getAllStaffs(@PathVariable Long id) {
+        ResponseDTO responseDTO = buildingService.getStaffs(id);
+        return responseDTO;
+    }
+
     @PostMapping
-    public String createBuilding(@RequestBody BuildingDTO dto)
-    {
-        buildingService.createAndUpdateBuilding(dto);
-        if (dto.getId() != null) return "Building updated successfully";
-        return new String("Building created");
+    public ResponseDTO createBuilding(@RequestBody BuildingDTO dto) {
+        ResponseDTO responseDTO = buildingService.createAndUpdateBuilding(dto);
+        return responseDTO;
     }
 
-    @DeleteMapping
-    public void deleteBuilding(@RequestBody ArrayList<Long> ids)
-    {
-        buildingService.deleteBuildings(ids);
+    @DeleteMapping(value = "/{ids}")
+    public ResponseDTO deleteBuilding(@PathVariable ArrayList<Long> ids) {
+        ResponseDTO responseDTO = buildingService.deleteBuildings(ids);
+        return responseDTO;
     }
 
-
+    @PostMapping(value = "/staffs")
+    public ResponseDTO assignStaffs(@RequestBody AssignmentBuildingDTO dto)
+    {
+        ResponseDTO responseDTO = buildingService.assignStaffs(dto);
+        return responseDTO;
+    }
 }

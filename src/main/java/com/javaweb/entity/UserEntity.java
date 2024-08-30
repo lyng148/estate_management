@@ -1,5 +1,7 @@
 package com.javaweb.entity;
 
+import com.javaweb.repository.entity.BuildingEntity;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,8 +38,8 @@ public class UserEntity extends BaseEntity {
     private List<RoleEntity> roles = new ArrayList<>();
 
 
-//    @OneToMany(mappedBy="staffs", fetch = FetchType.LAZY)
-//    private List<AssignmentBuildingEntity> assignmentBuildingEntities = new ArrayList<>();
+    @ManyToMany(mappedBy="staffList", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<BuildingEntity> assignmentBuilding = new ArrayList<>();
 //
 //    @OneToMany(mappedBy="users", fetch = FetchType.LAZY)
 //    private List<UserRoleEntity> userRoleEntities = new ArrayList<>();
@@ -97,6 +99,14 @@ public class UserEntity extends BaseEntity {
         @Override
     public Long getId() {
         return id;
+    }
+
+    public List<BuildingEntity> getAssignmentBuilding() {
+        return assignmentBuilding;
+    }
+
+    public void setAssignmentBuilding(List<BuildingEntity> assignmentBuilding) {
+        this.assignmentBuilding = assignmentBuilding;
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.javaweb.repository.BuildingRepository;
 import com.javaweb.repository.custom.BuildingRepositoryCustom;
 import com.javaweb.repository.entity.BuildingEntity;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -26,12 +27,6 @@ public class BuildingRepositoryImpl implements BuildingRepositoryCustom {
     // => Can dong bo ten cac Field voi Column trong bang
     public void queryJoin(BuildingSearchBuilder builder, StringBuilder sql) {
         String join = "";
-//        if (builder.getTypeCode() != null && !builder.getTypeCode().isEmpty()) {
-//            join += " JOIN buildingrenttype " +
-//                    " ON buildingrenttype.buildingid = building.id " +
-//                    " JOIN renttype " +
-//                    " ON buildingrenttype.renttypeid = renttype.id";
-//        }
         Long staffId = builder.getStaffId();
         if (staffId != null) {
             join += " LEFT JOIN assignmentbuilding" +
@@ -54,7 +49,7 @@ public class BuildingRepositoryImpl implements BuildingRepositoryCustom {
             {
                 item.setAccessible(true);
                 String fieldName = item.getName();
-                if (!fieldName.equals("staffId")  && !fieldName.endsWith("RentArea") && !fieldName.endsWith("Price") && !fieldName.equals("direction"))
+                if (!fieldName.equals("staffId")  && !fieldName.endsWith("RentArea") && !fieldName.endsWith("Price") && !fieldName.equals("type"))
                 {
                     Object value = item.get(builder);
                     if (value != null)
@@ -121,25 +116,40 @@ public class BuildingRepositoryImpl implements BuildingRepositoryCustom {
         {
             sql.append(" AND building.rentprice <= " + endPrice);
         }
-
+        if (builder.getType() != null && !builder.getType().isEmpty()){
+            sql.append(" AND (");
+            sql.append(builder.getType().stream().map(item -> " building.type LIKE '%" + item + "%'").collect(Collectors.joining(" OR ")));
+            sql.append(" ) ");
+        }
         sql.append(" GROUP BY building.id)");
 
     }
 
     @Override
-    public ArrayList<BuildingEntity> find(BuildingSearchBuilder builder) {
+    public int countTotalItem(BuildingSearchBuilder builder) {
+        StringBuilder sql = queryFilter(builder);
+        Query query = entityManager.createNativeQuery(sql.toString(), BuildingEntity.class);
+        return query.getResultList().size();
+    }
+
+    @Override
+    public ArrayList<BuildingEntity> find(BuildingSearchBuilder builder, Pageable pageable) {
+        StringBuilder sql = queryFilter(builder);
+        sql.append(" LIMIT " + pageable.getPageSize() + " OFFSET " + pageable.getOffset());
+        System.out.println(sql + "\n" + "===========================================\n");
+        ArrayList<BuildingEntity> buildingEntities;
+        Query query = entityManager.createNativeQuery(sql.toString(), BuildingEntity.class);
+        buildingEntities = (ArrayList<BuildingEntity>) query.getResultList();
+        return buildingEntities;
+    }
+
+    private StringBuilder queryFilter(BuildingSearchBuilder builder) {
         StringBuilder sql = new StringBuilder("SELECT * FROM building WHERE id IN (" +
                 " SELECT building.id FROM building");
         queryJoin(builder, sql);
         sql.append(" WHERE 1 = 1 ");
         querySqlNormal(builder, sql);
         querySqlSpecial(builder, sql);
-        System.out.println(sql + "\n" + "===========================================\n");
-        ArrayList<BuildingEntity> buildingEntities = new ArrayList<>();
-
-        Query query = entityManager.createNativeQuery(sql.toString(), BuildingEntity.class);
-        buildingEntities = (ArrayList<BuildingEntity>) query.getResultList();
-        return buildingEntities;
+        return sql;
     }
-
 }

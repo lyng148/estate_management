@@ -13,7 +13,7 @@ public class AssignmentBuildingDTO {
     public void setBuildingId(Long buildingId) {
         this.buildingId = buildingId;
     }
-
+    // Return staffIds List
     public List<Long> getStaffs() {
         return staffs;
     }

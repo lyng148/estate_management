@@ -29,4 +29,7 @@ public class StaffResponseDTO {
     public void setChecked(String checked) {
         this.checked = checked;
     }
+
+    public StaffResponseDTO() {
+    }
 }

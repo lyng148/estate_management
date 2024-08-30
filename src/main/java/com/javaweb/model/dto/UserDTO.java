@@ -8,39 +8,12 @@ import java.util.Map;
 public class UserDTO extends AbstractDTO {
     private String userName;
     private String fullName;
-    private String firstName;
-    private String lastName;
     private String password;
-    private String repeatPassword;
     private Integer status;
     private List<RoleDTO> roles = new ArrayList<>();
     private String roleName;
     private String roleCode;
     private Map<String,String> roleDTOs = new HashMap<>();
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getRepeatPassword() {
-        return repeatPassword;
-    }
-
-    public void setRepeatPassword(String repeatPassword) {
-        this.repeatPassword = repeatPassword;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 
     public String getUserName() {
         return userName;

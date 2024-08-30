@@ -47,11 +47,6 @@ public class UserAPI {
         return ResponseEntity.ok(userService.updateProfileOfUser(username, userDTO));
     }
 
-    @PostMapping("/register")
-    public String registerUser(@RequestBody UserDTO userDTO) {
-        userService.register(userDTO);
-        return "Registered successfully";
-    }
     @DeleteMapping
     public ResponseEntity<Void> deleteUsers(@RequestBody long[] idList) {
         if (idList.length > 0) {

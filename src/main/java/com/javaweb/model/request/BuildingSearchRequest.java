@@ -16,7 +16,7 @@ public class BuildingSearchRequest extends AbstractDTO {
     private String street;
     private Long numberOfBasement;
     private String direction;
-    private Long level;
+    private String level;
     private Long startRentArea;
     private Long endRentArea;
     private Long startRentPrice;

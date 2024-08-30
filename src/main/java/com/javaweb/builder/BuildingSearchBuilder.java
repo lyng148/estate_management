@@ -18,8 +18,8 @@ public class BuildingSearchBuilder {
     private Long floorArea;
     private String district;
     private Long numberOfBasement;
-    private Long level;
-    private String type;
+    private String level;
+    private List<String> type;
 
     public BuildingSearchBuilder(Builder builder) {
         this.name = builder.name;
@@ -49,7 +49,7 @@ public class BuildingSearchBuilder {
         return direction;
     }
 
-    public Long getLevel() {
+    public String getLevel() {
         return level;
     }
 
@@ -103,7 +103,7 @@ public class BuildingSearchBuilder {
         return staffId;
     }
 
-    public String getType() {
+    public List<String> getType() {
         return type;
     }
 
@@ -121,12 +121,11 @@ public class BuildingSearchBuilder {
         private Long endPrice;
         private Long floorArea;
         private String district;
-
         private Long numberOfBasement;
-        private Long level;
-        private String type;
+        private String level;
+        private List<String> type;
 
-        public Builder setLevel(Long level) {
+        public Builder setLevel(String level) {
             this.level = level;
             return this;
         }
@@ -203,7 +202,7 @@ public class BuildingSearchBuilder {
             return this;
         }
 
-        public Builder setType(String type) {
+        public Builder setType(List<String> type) {
             this.type = type;
             return this;
         }

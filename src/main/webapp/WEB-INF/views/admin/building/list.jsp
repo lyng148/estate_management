@@ -1,6 +1,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<c:url var="formUrl" value="/admin/building-list"/>
+<!DOCTYPE html>
 <html>
     <head>
         <title>Danh sách tòa nhà</title>
@@ -18,7 +21,8 @@
 
                     <ul class="breadcrumb">
                         <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-house-fill" viewBox="0 0 16 16">
                                 <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"/>
                                 <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z"/>
                             </svg>
@@ -176,7 +180,7 @@
 
                                                             <div class="col-xs-3">
                                                                 <div>
-                                                                    <label for="end-rent-price">Giá thuê đến</label>
+                                                                    <label for="endRentPrice">Giá thuê đến</label>
                                                                     <form:input class="form-control"
                                                                                 path="endRentPrice"></form:input>
                                                                 </div>
@@ -189,7 +193,7 @@
 
                                                             <div class="col-xs-5">
                                                                 <div>
-                                                                    <label for="manager-name">Tên quản lý</label>
+                                                                    <label for="managerName">Tên quản lý</label>
                                                                     <form:input class="form-control"
                                                                                 path="managerName"></form:input>
                                                                 </div>
@@ -197,7 +201,7 @@
 
                                                             <div class="col-xs-5">
                                                                 <div>
-                                                                    <label for="manager-phone-number">SĐT quản
+                                                                    <label for="managerPhone">SĐT quản
                                                                         lý</label>
                                                                     <form:input class="form-control"
                                                                                 path="managerPhone"></form:input>
@@ -281,74 +285,144 @@
                     <!-- Table -->
                     <div class="row">
                         <div class="col-xs-12">
-                            <table id="building-list" class="table table-striped table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Tên tòa nhà</th>
-                                        <th>Địa chỉ</th>
-                                        <th>Số tầng hầm</th>
-                                        <th>Tên quản lý</th>
-                                        <th>Số điện thoại quản lý</th>
-                                        <th>D.tích sàn</th>
-                                        <th>D.tích trống</th>
-                                        <th>Giá thuê</th>
-                                        <th>Phí dịch vụ</th>
-                                        <th>Phí MG</th>
-                                        <th>Thao tác</th>
-                                    </tr>
-                                </thead>
+                            <div class="table-responsive">
+                                <%--                            <table id="building-list" class="table table-striped table-bordered table-hover">--%>
+                                <%--                                <thead>--%>
+                                <%--                                    <tr>--%>
+                                <%--                                        <th></th>--%>
+                                <%--                                        <th>Tên tòa nhà</th>--%>
+                                <%--                                        <th>Địa chỉ</th>--%>
+                                <%--                                        <th>Số tầng hầm</th>--%>
+                                <%--                                        <th>Tên quản lý</th>--%>
+                                <%--                                        <th>Số điện thoại quản lý</th>--%>
+                                <%--                                        <th>D.tích sàn</th>--%>
+                                <%--                                        <th>D.tích trống</th>--%>
+                                <%--                                        <th>Giá thuê</th>--%>
+                                <%--                                        <th>Phí dịch vụ</th>--%>
+                                <%--                                        <th>Phí MG</th>--%>
+                                <%--                                        <th>Thao tác</th>--%>
+                                <%--                                    </tr>--%>
+                                <%--                                </thead>--%>
 
-                                <tbody>
-                                    <c:forEach items="${buildingList}" var="building">
-                                        <tr>
-                                            <td class="center">
-                                                <label class="pos-rel">
-                                                    <input type="checkbox" class="ace" value="${building.id}">
-                                                    <span class="lbl"></span>
-                                                </label>
-                                            </td>
+                                <%--                                <tbody>--%>
+                                <%--                                    <c:forEach items="${buildingList}" var="building">--%>
+                                <%--                                        <tr>--%>
+                                <%--                                            <td class="center">--%>
+                                <%--                                                <label class="pos-rel">--%>
+                                <%--                                                    <input type="checkbox" class="ace" value="${building.id}">--%>
+                                <%--                                                    <span class="lbl"></span>--%>
+                                <%--                                                </label>--%>
+                                <%--                                            </td>--%>
 
-                                            <td>
-                                                    ${building.name}
-                                            </td>
-                                            <td>${building.address}</td>
-                                            <td>${building.numberOfBasement}</td>
-                                            <td>${building.managerName}</td>
-                                            <td>${building.managerPhone}</td>
-                                            <td>${building.floorArea}</td>
-                                            <td>${building.rentArea}</td>
-                                            <td>${building.rentPrice}</td>
-                                            <td>${building.serviceFee}</td>
-                                            <td>${building.brokerageFee}</td>
-                                            <td>
-                                                <div class="hidden-sm hidden-xs btn-group">
-                                                    <button class="btn btn-xs btn-success" title="Giao tòa nhà"
-                                                            onclick="assignBuilding(${building.id})">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
-                                                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
-                                                        </svg>
-                                                    </button>
-                                                    <a href="/admin/building-edit-${building.id}">
-                                                        <button class="btn btn-xs btn-info" title="Sửa thông tin">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                                                                <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/>
-                                                            </svg>
-                                                        </button>
-                                                    </a>
-                                                    <button class="btn btn-xs btn-danger" title="Xóa tòa nhà"
-                                                            onclick="deleteOneBuilding(${building.id})">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                                                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
-                                                        </svg>
-                                                    </button>
+                                <%--                                            <td>--%>
+                                <%--                                                    ${building.name}--%>
+                                <%--                                            </td>--%>
+                                <%--                                            <td>${building.address}</td>--%>
+                                <%--                                            <td>${building.numberOfBasement}</td>--%>
+                                <%--                                            <td>${building.managerName}</td>--%>
+                                <%--                                            <td>${building.managerPhone}</td>--%>
+                                <%--                                            <td>${building.floorArea}</td>--%>
+                                <%--                                            <td>${building.rentArea}</td>--%>
+                                <%--                                            <td>${building.rentPrice}</td>--%>
+                                <%--                                            <td>${building.serviceFee}</td>--%>
+                                <%--                                            <td>${building.brokerageFee}</td>--%>
+                                <%--                                            <td>--%>
+                                <%--                                                <div class="hidden-sm hidden-xs btn-group">--%>
+                                <%--                                                    <button class="btn btn-xs btn-success" title="Giao tòa nhà"--%>
+                                <%--                                                            onclick="assignBuilding(${building.id})">--%>
+                                <%--                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"--%>
+                                <%--                                                             fill="currentColor" class="bi bi-check-lg"--%>
+                                <%--                                                             viewBox="0 0 16 16">--%>
+                                <%--                                                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>--%>
+                                <%--                                                        </svg>--%>
+                                <%--                                                    </button>--%>
+                                <%--                                                    <a href="/admin/building-edit-${building.id}">--%>
+                                <%--                                                        <button class="btn btn-xs btn-info" title="Sửa thông tin">--%>
+                                <%--                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"--%>
+                                <%--                                                                 height="16" fill="currentColor"--%>
+                                <%--                                                                 class="bi bi-pencil-fill" viewBox="0 0 16 16">--%>
+                                <%--                                                                <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/>--%>
+                                <%--                                                            </svg>--%>
+                                <%--                                                        </button>--%>
+                                <%--                                                    </a>--%>
+                                <%--                                                    <button class="btn btn-xs btn-danger" title="Xóa tòa nhà"--%>
+                                <%--                                                            onclick="deleteOneBuilding(${building.id})">--%>
+                                <%--                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"--%>
+                                <%--                                                             fill="currentColor" class="bi bi-trash-fill"--%>
+                                <%--                                                             viewBox="0 0 16 16">--%>
+                                <%--                                                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>--%>
+                                <%--                                                        </svg>--%>
+                                <%--                                                    </button>--%>
 
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-                                </tbody>
-                            </table>
+                                <%--                                                </div>--%>
+                                <%--                                            </td>--%>
+                                <%--                                        </tr>--%>
+                                <%--                                    </c:forEach>--%>
+                                <%--                                </tbody>--%>
+                                <%--                            </table>--%>
+
+                                <display:table name="model.listResult" cellspacing="0" cellpadding="0"
+                                               requestURI="${formUrl}"
+                                               partialList="true" sort="external"
+                                               size="${model.totalItems}" defaultsort="2" defaultorder="ascending"
+                                               id="tableList" pagesize="${model.maxPageItems}"
+                                               export="false"
+                                               class="table table-fcv-ace table-striped table-bordered table-hover dataTable no-footer"
+                                               style="margin: 3em 0 1.5em;">
+                                    <display:column title="<fieldset class='form-group'>
+												        <input type='checkbox' id='checkAll' class='check-box-element'>
+												        </fieldset>" class="center select-cell"
+                                                    headerClass="center select-cell">
+                                        <fieldset>
+                                            <input type="checkbox" name="checkList" value="${tableList.id}"
+                                                   id="${tableList.id}" class="check-box-element"/>
+                                        </fieldset>
+                                    </display:column>
+                                    <display:column headerClass="text-left" property="name" title="Tên"/>
+                                    <display:column headerClass="text-left" property="address" title="Địa chỉ"/>
+                                    <display:column headerClass="text-left" property="numberOfBasement"
+                                                    title="Số tầng hầm"/>
+                                    <display:column headerClass="text-left" property="managerName" title="Tên quản lý"/>
+                                    <display:column headerClass="text-left" property="managerPhone"
+                                                    title="SĐT quản lý"/>
+                                    <display:column headerClass="text-left" property="floorArea" title="Diện tích sàn"/>
+                                    <display:column headerClass="text-left" property="rentArea"
+                                                    title="Diện tích trống"/>
+                                    <display:column headerClass="text-left" property="rentPrice" title="Giá thuê"/>
+                                    <display:column headerClass="text-left" property="serviceFee" title="Phí dịch vụ"/>
+                                    <display:column headerClass="text-left" property="brokerageFee" title="Phí MG"/>
+                                    <display:column headerClass="col-actions" title="Thao tác">
+                                        <div class="hidden-sm hidden-xs btn-group">
+                                            <button class="btn btn-xs btn-success" title="Giao tòa nhà"
+                                                    onclick="assignBuilding(${tableList.id})">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                     fill="currentColor" class="bi bi-check-lg"
+                                                     viewBox="0 0 16 16">
+                                                    <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+                                                </svg>
+                                            </button>
+                                            <a href="/admin/building-edit-${tableList.id}">
+                                                <button class="btn btn-xs btn-info" title="Sửa thông tin">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                         height="16" fill="currentColor"
+                                                         class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                                                        <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/>
+                                                    </svg>
+                                                </button>
+                                            </a>
+                                            <button class="btn btn-xs btn-danger" title="Xóa tòa nhà"
+                                                    onclick="deleteOneBuilding(${tableList.id})">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                     fill="currentColor" class="bi bi-trash-fill"
+                                                     viewBox="0 0 16 16">
+                                                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                                                </svg>
+                                            </button>
+
+                                        </div>
+                                    </display:column>
+                                </display:table>
+                            </div>
                         </div><!-- /.span -->
                     </div>
                 </div><!-- /.page-content -->
@@ -374,31 +448,8 @@
                             </thead>
 
                             <tbody>
-                                <tr>
-                                    <td class="center">
-                                        <label class="pos-rel">
-                                            <input type="checkbox" class="ace" value="1">
-                                            <span class="lbl"></span>
-                                        </label>
-                                    </td>
 
-                                    <td class="center">
-                                        Linh Tower
-                                    </td>
 
-                                </tr>
-                                <tr>
-                                    <td class="center">
-                                        <label class="pos-rel">
-                                            <input type="checkbox" class="ace" value="5">
-                                            <span class="lbl"></span>
-                                        </label>
-                                    </td>
-
-                                    <td class="center">
-                                        Linh Anh
-                                    </td>
-                                </tr>
                             </tbody>
                         </table>
                         <input type="hidden" name="buildingid" id="buildingid" value="">
@@ -415,6 +466,37 @@
             function assignBuilding(buildingId) {
                 $('#assignBuildingModal').modal();
                 $("#buildingid").val(buildingId);
+                loadStaffs(buildingId);
+            }
+
+            function loadStaffs(buildingId) {
+                $.ajax({
+                    type: "GET",
+                    url: "/api/buildings/" + buildingId + "/staffs",
+                    dataType: "JSON",				// Kieu du lieu server tra ve client
+                    // contentType: "application/json",  // Kieu du lieu gui di
+                    success: function (response) {
+                        var row = '';
+                        $.each(response.data, function (index, item) {
+                            row += '<tr>';
+                            row += '<td class="center">';
+                            row += '<label class="pos-rel">';
+                            row += '<input type="checkbox" class="check-box-element" value="' + item.staffId + '"' + item.checked + '>';
+                            row += '<span class="lbl"></span>';
+                            row += '</label>';
+                            row += '</td>';
+                            row += '<td class="center">';
+                            row += item.fullName;
+                            row += '</td>';
+                            row += '</tr>';
+                        })
+                        $("#staff-list tbody").html(row);
+                    },
+                    error: function () {
+                        console.log("fail");
+                        alert("Fail to load staffs");
+                    }
+                })
             }
 
             $("#btn-assign-building").click(function (e) {
@@ -424,7 +506,7 @@
                 var staffs = $("#staff-list").find("tbody input[type=checkbox]:checked").map(function () {
                     return $(this).val();
                 }).get();
-                data['staffId'] = staffs;
+                data['staffs'] = staffs;
                 console.log("ok");
                 sendAssignBuilding(data);
             })
@@ -432,13 +514,14 @@
             function sendAssignBuilding(data) {
                 $.ajax({
                     type: "POST",
-                    url: "/api/buildings/staff",
+                    url: "/api/buildings/staffs",
                     data: JSON.stringify(data),		// Chuyen doi du lieu gui den sang json
-                    // dataType:"text",				// Kieu du lieu server tra ve client
+                    dataType: "json",				// Kieu du lieu server tra ve client
                     contentType: "application/json",  // Kieu du lieu gui di
-                    success: function () {
+                    success: function (response) {
                         console.log("success");
-                        alert("Giao nhân viên thành công");
+                        alert(response["message"]);
+                        window.location.reload();
                     },
                     error: function () {
                         console.log("fail");
@@ -450,7 +533,7 @@
             $("#btn-delete-buildings").click(function (e) {
                 e.preventDefault();
                 var data = {};
-                var buildings = $("#building-list").find("tbody input[type=checkbox]:checked").map(function () {
+                var buildings = $("#tableList").find("tbody input[type=checkbox]:checked").map(function () {
                     return $(this).val();
                 }).get();
                 data = buildings;
@@ -460,13 +543,13 @@
             function deleteBuilding(data) {
                 $.ajax({
                     type: "DELETE",
-                    url: "/api/buildings",
-                    data: JSON.stringify(data),		// Chuyen doi du lieu gui den sang json
-                    // dataType:"text",				// Kieu du lieu server tra ve client
+                    url: "/api/buildings/" + data,
+                    // data: JSON.stringify(data),		// Chuyen doi du lieu gui den sang json
+                    dataType: "json",				// Kieu du lieu server tra ve client
                     contentType: "application/json",  // Kieu du lieu gui di
-                    success: function () {
+                    success: function (reponse) {
                         console.log("success");
-                        alert("Xóa tòa nhà thành công");
+                        alert(reponse["message"]);
                         window.location.reload();
                     },
                     error: function () {

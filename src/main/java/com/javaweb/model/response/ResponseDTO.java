@@ -28,4 +28,7 @@ public class ResponseDTO {
     public void setDetail(String detail) {
         this.detail = detail;
     }
+
+    public ResponseDTO() {
+    }
 }

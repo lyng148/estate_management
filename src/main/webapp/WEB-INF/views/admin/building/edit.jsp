@@ -131,7 +131,7 @@
                                     <div class="col-xs-12">
                                         <label for="rentArea" class="col-xs-3">Diện tích thuê</label>
                                         <div class="col-xs-7">
-                                            <form:input class="form-control" path="rentArea"></form:input>
+                                            <form:input class="form-control" path="rentArea" placeholder="100, 200, ..."></form:input>
                                         </div>
                                     </div>
                                 </div>
@@ -290,9 +290,23 @@
                                         </div>
                                     </div>
                                 </div>
-                                <c:if test="${building.id != null}">
-                                    <input type="hidden" name="id" value="${building.id}">
-                                </c:if>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 no-padding-right">Hình đại diện</label>
+                                    <input class="col-sm-3 no-padding-right" type="file" id="uploadImage"/>
+                                    <div class="col-sm-9">
+                                        <c:if test="${not empty building.image}">
+                                            <c:set var="imagePath" value="/repository${building.image}"/>
+                                            <img src="${imagePath}" id="viewImage" width="300px" height="300px" style="margin-top: 50px">
+                                        </c:if>
+                                        <c:if test="${empty building.image}">
+                                            <img src="/img/default.jpg" id="viewImage" width="300px" height="300px">
+                                        </c:if>
+                                    </div>
+                                </div>
+
+
+                                <input type="hidden" name="id" value="${building.id}">
                                 <div class="form-group">
                                     <div class="col-xs-12">
                                         <div class="col-xs-3"></div>
@@ -307,7 +321,9 @@
                                                     tòa nhà
                                                 </button>
                                             </c:if>
-                                            <button type="button" class="btn btn-danger">Hủy</button>
+                                            <a href="/admin/building-list">
+                                                <button type="button" class="btn btn-danger">Hủy</button>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -324,6 +340,9 @@
             </div>
         </div><!-- /.main-content -->
         <script>
+            var imageBase64 = '';
+            var imageName = '';
+
             $("#btnAddBuilding").click(function () {
                 var json = {};
                 var type = [];
@@ -334,22 +353,51 @@
                         json["" + it.name + ""] = it.value;
                     else
                         type.push(it.value);
+                    if ('' !== imageBase64) {
+                        json['imageBase64'] = imageBase64;
+                        json['imageName'] = imageName;
+                    }
                 });
                 json['type'] = type;
-                console.log("ok");
+                if (json["name"] === "")
+                {
+                    alert("Tên tòa nhà không được để trống");
+                    return;
+                }
                 addBuilding(json);
             })
+
+            $('#uploadImage').change(function (event) {
+                var reader = new FileReader();
+                var file = $(this)[0].files[0];
+                reader.onload = function(e){
+                    imageBase64 = e.target.result;
+                    imageName = file.name; // ten hinh khong dau, khoang cach. vd: a-b-c
+                };
+                reader.readAsDataURL(file);
+                openImage(this, "viewImage");
+            });
+
+            function openImage(input, imageView) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#' +imageView).attr('src', reader.result);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
 
             function addBuilding(data) {
                 $.ajax({
                     type: "POST",
                     url: "/api/buildings",
                     data: JSON.stringify(data),		// Chuyen doi du lieu gui den sang json
-                    dataType:"text",				// Kieu du lieu server tra ve client
+                    dataType:"json",				// Kieu du lieu server tra ve client
                     contentType: "application/json",  // Kieu du lieu gui di
                     success: function (response) {
                         console.log("success");
-                        alert(response);
+                        alert(response["message"]);
                         window.location.replace("/admin/building-list")
                     },
                     error: function () {
