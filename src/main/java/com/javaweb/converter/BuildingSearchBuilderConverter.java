@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class BuildingSearchBuilderConverter {
-    public BuildingSearchBuilder buildingSearchRequestToBuildingSearchBuilder(BuildingSearchRequest buildingSearchRequest) {
+    public BuildingSearchBuilder  buildingSearchRequestToBuildingSearchBuilder(BuildingSearchRequest buildingSearchRequest) {
         BuildingSearchBuilder builder = new BuildingSearchBuilder.Builder()
                 .setName(BuildingSearchUtils.getObject(buildingSearchRequest.getName(), String.class))
                 .setWard(BuildingSearchUtils.getObject(buildingSearchRequest.getWard(), String.class))
