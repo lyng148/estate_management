@@ -12,4 +12,5 @@ import java.util.Map;
 public interface BuildingRepository extends JpaRepository<BuildingEntity, Long>, BuildingRepositoryCustom {
     List<BuildingEntity> findByNameContainingAndWardContaining(String name, String ward);
     void deleteByIdIn(List<Long> ids);
+    List<BuildingEntity> findAll();
 }

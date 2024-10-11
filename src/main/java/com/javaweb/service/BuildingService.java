@@ -23,4 +23,5 @@ public interface BuildingService {
     BuildingDTO findById(Long id);
     ResponseDTO getStaffs(Long id);
     ResponseDTO assignStaffs(AssignmentBuildingDTO assignmentBuildingDTO);
+    List<BuildingDTO> getAll();
 }

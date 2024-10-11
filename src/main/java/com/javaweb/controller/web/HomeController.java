@@ -1,12 +1,15 @@
 package com.javaweb.controller.web;
 
 import com.javaweb.model.request.BuildingSearchRequest;
+import com.javaweb.service.BuildingService;
 import com.javaweb.utils.DistrictCode;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,10 +21,14 @@ import javax.servlet.http.HttpSession;
 @Controller(value = "homeControllerOfWeb")
 public class HomeController {
 
+    @Autowired
+    BuildingService buildingService;
+
 	@RequestMapping(value = "/trang-chu", method = RequestMethod.GET)
 	public ModelAndView homePage(BuildingSearchRequest buildingSearchRequest, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("web/home");
         mav.addObject("modelSearch", buildingSearchRequest);
+        mav.addObject("buildingList", buildingService.getAll());
         mav.addObject("districts", DistrictCode.type());
 		return mav;
 	}
@@ -29,6 +36,13 @@ public class HomeController {
     @GetMapping(value="/gioi-thieu")
     public ModelAndView introducceBuiding(){
         ModelAndView mav = new ModelAndView("web/introduce");
+        return mav;
+    }
+
+    @GetMapping(value = "/building-{id}")
+    public ModelAndView buildingDetail(@PathVariable Long id){
+        ModelAndView mav = new ModelAndView("web/building");
+        mav.addObject("building", buildingService.findById(id));
         return mav;
     }
 

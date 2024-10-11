@@ -2,6 +2,7 @@ package com.javaweb.converter;
 
 
 import com.javaweb.enums.district;
+import com.javaweb.model.dto.BuildingDTO;
 import com.javaweb.model.response.BuildingSearchResponse;
 import com.javaweb.repository.entity.BuildingEntity;
 
@@ -11,6 +12,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Configuration
@@ -35,4 +38,11 @@ public class BuildingConverter {
         return res;
     }
 
+    public BuildingDTO toBuildingDTO(BuildingEntity buildingEntity){
+        BuildingDTO buildingDTO = modelMapper.map(buildingEntity, BuildingDTO.class);
+        List<String> type = Arrays.asList(buildingEntity.getType().split(","));
+        buildingDTO.setType(type);
+        buildingDTO.setRentArea(buildingEntity.getRentAreaEntities().stream().map(item -> item.getValue().toString()).collect(Collectors.joining(", ")));
+        return buildingDTO;
+    }
 }

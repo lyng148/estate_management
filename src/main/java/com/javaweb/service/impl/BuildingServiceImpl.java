@@ -81,17 +81,15 @@ public class BuildingServiceImpl implements BuildingService {
             type = String.join(",", buildingDTO.getType());
         }
         buildingEntity.setType(type);
-        if (buildingDTO.getImageName() != null){
+        if (buildingDTO.getImageName() != null) {
             saveThumbnail(buildingDTO, buildingEntity);
-        }
-        else {
+        } else {
             buildingEntity.setImage(buildingRepository.findById(buildingDTO.getId()).get().getImage());
         }
         Set<Long> rentArea = rentAreaConverter.stringToList(buildingDTO.getRentArea());
         List<RentAreaEntity> rentAreaEntities = new ArrayList<>();
 
-        if (rentArea != null)
-        {
+        if (rentArea != null) {
             for (Long i : rentArea) {
                 RentAreaEntity rentAreaEntity = new RentAreaEntity();
                 rentAreaEntity.setBuildingEntity(buildingEntity);
@@ -100,7 +98,7 @@ public class BuildingServiceImpl implements BuildingService {
             }
         }
         buildingEntity.setRentAreaEntities(rentAreaEntities);
-        if (buildingDTO.getId() != null){
+        if (buildingDTO.getId() != null) {
             buildingEntity.setStaffList(buildingRepository.findById(buildingDTO.getId()).get().getStaffList());
         }
         buildingRepository.save(buildingEntity);
@@ -155,7 +153,7 @@ public class BuildingServiceImpl implements BuildingService {
 
     @Override
     public ResponseDTO getStaffs(Long id) {
-        // Get tat ca nhan vien
+        // Get tat ca nhan vien`
         List<UserEntity> staffs = userRepository.findByStatusAndRoles_Code(1, "STAFF");
         // Get danh sach nhan vien dang quan ly toa nha
         List<UserEntity> staffAssignmentBuilding = buildingRepository.findById(id).get().getStaffList();
@@ -195,5 +193,12 @@ public class BuildingServiceImpl implements BuildingService {
             responseDTO.setMessage("Unassigned all staffs");
         }
         return responseDTO;
+    }
+
+    @Override
+    public List<BuildingDTO> getAll() {
+        List<BuildingEntity> buildingEntities = buildingRepository.findAll();
+        List<BuildingDTO> buildingDTOS = buildingEntities.stream().map(item -> buildingConverter.toBuildingDTO(item)).collect(Collectors.toList());
+        return buildingDTOS;
     }
 }
